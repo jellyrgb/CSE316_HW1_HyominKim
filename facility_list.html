@@ -7,26 +7,42 @@
     <title>Facility List</title>
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="facility_list.html">Facility List</a>
-        <a href="facility_reservation.html">Facility Reservation</a>
-        <div class="dropdown">
-            <button class="dropbtn">My Page</button>
-            <div class="dropdown-content">
-                <a href="profile.html">Profile</a>
-                <a href="reservations.html">Reservations</a>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                    </svg>
+                </a>
             </div>
+
+            <div class="navbar-center">
+                <a href="facility_list.html">Facility List</a>
+                <a href="facility_reservation.html">Facility Reservation</a>
+
+                <div class="dropdown">
+                    <button class="dropbutton">My Page ▼</button>
+                    <div class="dropdown-content">
+                        <a href="profile.html">My Information</a>
+                        <a href="reservations.html">My Reservation</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <a class="profile-button" href="profile.html">
+                    <img src="images/user.png" alt="User Profile Picture">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="facility-list" class="facility-container">
+            <!-- Facilities will be dynamically inserted here using JavaScript -->
         </div>
-    </nav>
-</header>
-<main>
-    <h1>Facilities Available for Reservation</h1>
-    <div id="facility-list" class="facility-container">
-        <!-- Facilities will be dynamically inserted here using JavaScript -->
-    </div>
-</main>
-<script src="js/script.js"></script>
+    </main>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

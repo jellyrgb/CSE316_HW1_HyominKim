@@ -1,24 +1,47 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f6eeff;
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #f6eeff;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 .navbar a:hover {
-    background-color: #ddd;
+    background-color: #e6d0ff;
     color: black;
+}
+
+.navbar button:hover {
+    background-color: #e6d0ff;
+    color: black;
+}
+
+.navbar-left {
+    justify-content: flex-start;
+    padding-left: 100px;
+}
+
+.navbar-center {
+    justify-content: center;
+}
+
+.navbar-right {
+    justify-content: flex-end;
+    padding-right: 100px;
 }
 
 .dropdown {
@@ -26,9 +49,8 @@ body {
     overflow: hidden;
 }
 
-.dropdown .dropbtn {
-    background-color: #333;
-    color: white;
+.dropdown .dropbutton {
+    background-color: #f6eeff;
     padding: 14px 16px;
     border: none;
 }
@@ -36,7 +58,7 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #e0dce5;
     min-width: 160px;
     z-index: 1;
 }
@@ -47,8 +69,70 @@ body {
     text-decoration: none;
     display: block;
     text-align: left;
+    flex-direction: column;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-button img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+h1 {
+    padding-left: 100px;
+}
+
+.main-content {
+    padding-left: 120px;
+}
+
+.facility-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.facility-container {
+    padding-left: 100px;
+    padding-top: 30px;
+}
+
+.facility-item {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.facility-item img {
+    width: 30%;
+    height: auto;
+    border-radius: 40px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    margin-right: 30px;
+}
+
+.facility-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.facility-info p, h2{
+    margin: 3px 0;
+}
+
+.facility-info div {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.facility-info svg {
+    margin-right: 4px;
+    vertical-align: middle;
 }
