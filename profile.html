@@ -18,8 +18,8 @@
             </div>
 
             <div class="navbar-center">
-                <a href="facility_list.html">Facility List</a>
-                <a href="facility_reservation.html">Facility Reservation</a>
+                <a href="facility_list.html" class="navbar-link">Facility List</a>
+                <a href="facility_reservation.html" class="navbar-link">Facility Reservation</a>
 
                 <div class="dropdown">
                     <button class="dropbutton">My Page ▼</button>
@@ -30,21 +30,46 @@
                 </div>
             </div>
 
-            <div class="navbar-right">
-                <a class="profile-button" href="profile.html">
-                    <img src="images/user.png" alt="User Profile Picture">
-                </a>
-            </div>
+            <img class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
         </nav>
     </header>
 
-    <main>
-        <h1>User Profile</h1>
-        <img src="images/user.png" alt="User Profile Picture">
-        <input type="file" id="profile-pic" accept="image/*">
-        <label for="password">Password:</label>
-        <input type="password" id="password" value="********">
-        <button>Change Password</button>
+    <main id="profile-page">
+        <h1>User Information</h1>
+        
+        <img class="profile-padding" id="profile-pic" src="images/user.png" alt="User Profile Picture">
+        <button id="change-image" class="profile-button profile-padding">Change Image</button>
+
+        <label class="profile-padding" for="email">Email: abc@stonybrook.edu</label>
+
+        <div class="button-container profile-padding">
+            <label for="password">Password: ******</label>
+            <button class="profile-button">Change Password</button>
+        </div>
+        
+        <div class="button-container profile-padding">
+            <label for="name">Name: John Doe</label>
+            <button class="profile-button">Change Name</button>
+        </div>
+        
     </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-header">Change your image</div>
+        <hr class="divider">
+        <div class="modal-body">
+            <label for="fileInput">New Image</label>
+            <br>
+            <input id="picture-input" type="file" id="fileInput">
+        </div>
+
+        <hr class="divider">
+        <div class="modal-footer">
+            <button id="closeBtn">Close</button>
+            <button id="saveBtn">Save changes</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

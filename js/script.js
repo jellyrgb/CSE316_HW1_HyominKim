@@ -1,3 +1,4 @@
+// Information about the facilities
 const facilities = [
     { id: "gym", name: "Gym", description: "sports hall", capacity: 4, location: "C1033", availability: "Available to all", image: "images/gym.jpg" },
     { id: "auditorium", name: "Auditorium", description: "the auditorium theater", capacity: 30, location: "A234", availability: "Available to all", image: "images/auditorium.jpg" },
@@ -7,37 +8,38 @@ const facilities = [
     { id: "library", name: "Library", description: "study and read books", capacity: 4, location: "C1033", availability: "Only for SUNY Korea", image: "images/library.jpg" },
 ];
 
-
+// Display facility information - Facility List page
 const facilityList = document.getElementById('facility-list');
 if (facilityList) {
     facilities.forEach(facility => {
-        displayFacilityInfo(facility.id);
+        displayFacilityInfo(facility.id, facilityList);
     });
 }
 
+// Display facility information - Reservation page
+const initialFacility = document.getElementById('facility-list-reservation');
+displayFacilityInfo("gym", initialFacility);
+
 // Event listener for facility selection
-document.getElementById('facility').addEventListener('change', function() {
-    console.log("OKAY")
-    const facilityDisplay = document.getElementById('facility-display');
-    if (facilityDisplay) {
-        displayFacilityInfo(this.value);
-    }
-});
-
-// Initial display of facility information
-document.addEventListener('DOMContentLoaded', function() {
-    const initialFacility = document.getElementById('facility').value;
-    displayFacilityInfo(initialFacility);
-});
-
-const facilitySelect = document.getElementById('facility');
-if (facilitySelect) {
-    displayFacilityInfo(facilitySelect.value);
+if (initialFacility) {
+    document.getElementById('facility').addEventListener('change', function() {
+        const facilityDisplay = document.getElementById('facility-list-reservation');
+        if (facilityDisplay) {
+            facilityDisplay.innerHTML = '';
+            displayFacilityInfo(this.value, facilityDisplay);
+        }
+    });
 }
 
-function displayFacilityInfo(facilityId) {
+// Function to display facility information
+function displayFacilityInfo(facilityId, target) {
     const facility = facilities.find(f => f.id === facilityId);
-    const facilityInfoDiv = document.getElementById('facility-display');
+
+    // If target is not found, do nothing
+    if (!target) {
+        return;
+    }
+
     if (facility) {
         const facilityItem = document.createElement('div');
         facilityItem.classList.add('facility-item');
@@ -71,9 +73,9 @@ function displayFacilityInfo(facilityId) {
                 </div>
             </div>
         `;
-        facilityList.appendChild(facilityItem);
+        target.appendChild(facilityItem);
     } else {
-        facilityInfoDiv.innerHTML = '<p>No information available.</p>';
+        target.innerHTML = '<p>No information available.</p>';
     }
 }
 
@@ -81,27 +83,68 @@ function displayFacilityInfo(facilityId) {
 const reservationForm = document.getElementById('reservation-form');
 if (reservationForm) {
     reservationForm.addEventListener('submit', function(event) {
+        // 기본 제출 동작 방지
         event.preventDefault();
+
         const facility = document.getElementById('facility').value;
         const date = new Date(document.getElementById('date').value);
-        const people = parseInt(document.getElementById('people').value);
+        const people = parseInt(document.getElementById('people').value, 10);
         const affiliation = document.querySelector('input[name="affiliation"]:checked').value;
-        const facilityDetails = facilities.find(f => f.id === facility);
+        const purpose = document.getElementById('purpose').value;
 
-        // Check if reservation is valid
-        if (people > facilityDetails.capacity) {
-            alert("Cannot reserve: People exceed facility capacity.");
-        } else if (date < new Date()) {
-            alert("Cannot reserve: Date is in the past.");
-        } else if (facilityDetails.id !== 'pool' && affiliation === 'no') {
-            alert("Cannot reserve: Only SUNY Korea affiliated members can reserve this facility.");
-        } else {
-            alert("Reservation successful!");
-            localStorage.setItem('reservation', JSON.stringify({
-                facility: facilityDetails.name,
-                date: date,
-                people: people
-            }));
+        const today = new Date();
+        const facilityCapacity = facilities.find(f => f.id === facility).capacity;
+        const isSUNYOnly = facilities.find(f => f.id === facility).availability === 'Only for SUNY Korea';
+
+        // 조건 검사
+        if (people > facilityCapacity) {
+            alert("Cannot reserve. (Capacity)");
+            return;
         }
+
+        if (date < today) {
+            alert("Cannot reserve. (Date)");
+            return;
+        }
+
+        if (isSUNYOnly && affiliation === 'no') {
+            alert("Cannot reserve. (Affiliation)");
+            return;
+        }
+
+        // 데이터 저장
+        const reservationData = {
+            facility,
+            date: date.toISOString(),
+            people,
+            affiliation,
+            purpose
+        };
+
+        localStorage.setItem('reservation', JSON.stringify(reservationData));
+        alert("Reserved.");
+    });
+}
+
+// Profile picture change logic
+const button = document.getElementById('change-image');
+if (button) {
+    button.addEventListener('click', function() {
+        document.getElementById('modal').classList.add('show');
+        
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            document.getElementById('modal').classList.remove('show');
+        });
+        
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                alert('Image selected: ' + fileInput.files[0].name);
+            } else {
+                alert('No file chosen');
+            }
+            document.getElementById('modal').classList.remove('show');
+        });
+        
     });
 }

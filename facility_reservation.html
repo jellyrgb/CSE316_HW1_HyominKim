@@ -18,8 +18,8 @@
             </div>
 
             <div class="navbar-center">
-                <a href="facility_list.html">Facility List</a>
-                <a href="facility_reservation.html">Facility Reservation</a>
+                <a href="facility_list.html" class="navbar-link">Facility List</a>
+                <a href="facility_reservation.html" class="navbar-link">Facility Reservation</a>
 
                 <div class="dropdown">
                     <button class="dropbutton">My Page ▼</button>
@@ -30,40 +30,51 @@
                 </div>
             </div>
 
-            <div class="navbar-right">
-                <a class="profile-button" href="profile.html">
-                    <img src="images/user.png" alt="User Profile Picture">
-                </a>
-            </div>
+            <img class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
         </nav>
     </header>
     
     <main>
         <form id="reservation-form">
-            <select id="facility" name="facility">
-                <option value="gym">Gym</option>
-                <option value="auditorium">Auditorium</option>
-                <option value="pool">Pool</option>
-                <option value="seminar">Seminar Room</option>
-                <option value="conference">Conference Room</option>
-                <option value="library">Library</option>
-            </select>
+            <div class="reservation-form-content">
+                <select id="facility" name="facility">
+                    <option value="gym">Gym</option>
+                    <option value="auditorium">Auditorium</option>
+                    <option value="pool">Pool</option>
+                    <option value="seminar">Seminar Room</option>
+                    <option value="conference">Conference Room</option>
+                    <option value="library">Library</option>
+                </select>
+            </div>
+            
+            <div id="facility-list-reservation" class="facility-container">
+                <!-- Dynamically inserted by JS -->
+            </div>
 
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-            <label for="people">Number of People:</label>
-            <input type="number" id="people" name="people" required>
-            <label>Affiliated with SUNY Korea:</label>
-            <input type="radio" id="yes" name="affiliation" value="yes" checked> Yes
-            <input type="radio" id="no" name="affiliation" value="no"> No
-            <label for="purpose">Purpose of Use:</label>
-            <textarea id="purpose" name="purpose" rows="4" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
+            <div class="reservation-form-content">
+                <label class="reservation-margin" for="date"><strong>Date to be Used: </strong></label>
+                <input class="reservation-margin" type="date" id="date" name="date" required>
+                <br>
 
-        <div id="facility-display">
-            <!-- Dynamically add by javascript -->
-        </div>
+                <label  class="reservation-margin" for="people"><strong>Number of People: </strong></label>
+                <input  class="reservation-margin" type="number" id="people" name="people" required>
+                <br>
+
+                <label><strong>Are you affiliated with SUNY Korea?</strong></label>
+                <br>
+                <input type="radio" id="yes" name="affiliation" value="yes" checked> Yes
+                <br>
+                <input  class="reservation-margin" type="radio" id="no" name="affiliation" value="no"> No
+                <br>
+
+                <label for="purpose"><strong>Purpose of Use: </strong></label>
+                <br>
+                <textarea class="reservation-margin" id="purpose" name="purpose" rows="4" required></textarea>
+                <br>
+
+                <button id="submit-button" type="submit">Submit</button>
+            </div>
+        </form>        
     </main>
 
     <script src="js/script.js"></script>
