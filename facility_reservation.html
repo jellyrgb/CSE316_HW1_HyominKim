@@ -31,7 +31,13 @@
                 </div>
             </div>
 
-            <img class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
+            <button class="hamburger-menu" id="hamburger-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+            </button>
+
+            <img id="navbar-profile" class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
         </nav>
     </header>
     
@@ -57,20 +63,19 @@
                 <input class="reservation-margin" type="date" id="date" name="date" required>
                 <br>
 
-                <label  class="reservation-margin" for="people"><strong>Number of People: </strong></label>
-                <input  class="reservation-margin" type="number" id="people" name="people" required>
+                <label class="reservation-margin" for="people"><strong>Number of People: </strong></label>
+                <input class="reservation-margin" type="number" id="people" name="people" required>
                 <br>
 
-                <label><strong>Are you affiliated with SUNY Korea?</strong></label>
+                <p class="affiliation"><strong>Are you affiliated with SUNY Korea?</strong></p>
+                <input class="reservation-radio" type="radio" id="yes" name="affiliation" value="yes" checked> Yes
                 <br>
-                <input type="radio" id="yes" name="affiliation" value="yes" checked> Yes
-                <br>
-                <input  class="reservation-margin" type="radio" id="no" name="affiliation" value="no"> No
+                <input class="reservation-radio reservation-margin" type="radio" id="no" name="affiliation" value="no"> No
                 <br>
 
                 <label for="purpose"><strong>Purpose of Use: </strong></label>
                 <br>
-                <textarea class="reservation-margin" id="purpose" name="purpose" rows="4" required></textarea>
+                <textarea class="reservation-margin" id="purpose" name="purpose" rows="3" required></textarea>
                 <br>
 
                 <button id="submit-button" type="submit">Submit</button>

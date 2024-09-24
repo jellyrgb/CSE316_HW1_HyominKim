@@ -31,25 +31,31 @@
                 </div>
             </div>
 
-            <img class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
+            <button class="hamburger-menu" id="hamburger-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+            </button>
+
+            <img id="navbar-profile" class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
         </nav>
     </header>
 
     <main id="profile-page">
-        <h1>User Information</h1>
+        <h1 id="profile-title">User Information</h1>
         
         <img class="profile-padding" id="profile-pic" src="images/user.png" alt="User Profile Picture">
         <button id="change-image" class="profile-button profile-padding">Change Image</button>
 
-        <label class="profile-padding" for="email">Email: abc@stonybrook.edu</label>
+        <p class="profile-padding">Email: abc@stonybrook.edu</p>
 
         <div class="button-container profile-padding">
-            <label for="password">Password: ******</label>
+            <p class="profile-placeholder">Password: ******</p>
             <button id="change-password" class="profile-button">Change Password</button>
         </div>
         
         <div class="button-container profile-padding">
-            <label for="name">Name: John Doe</label>
+            <p class="profile-placeholder">Name: John Doe</p>
             <button class="profile-button">Change Name</button>
         </div>
         
@@ -101,27 +107,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('button');
-            const imageModal = document.getElementById('image-modal');
-            const passwordModal = document.getElementById('password-modal');
-
-            buttons.forEach(button => {
-                button.addEventListener('mousedown', function() {
-                    this.classList.add('clicked');
-                });
-            });
-
-            const removeClickedClass = () => {
-                buttons.forEach(button => {
-                    button.classList.remove('clicked');
-                });
-            };
-
-            imageModal.addEventListener('hidden.bs.modal', removeClickedClass);
-            passwordModal.addEventListener('hidden.bs.modal', removeClickedClass);
-        });
-    </script>
 </body>
 </html>

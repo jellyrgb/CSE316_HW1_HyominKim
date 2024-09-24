@@ -212,3 +212,48 @@ function displayReservationInfo(reservation, facilityId, target) {
         target.innerHTML = '<p>No information available.</p>';
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navbar = document.querySelector('.navbar');
+    const mainContent = document.querySelector('main');
+
+    // Toggle the visibility of the navbar on hamburger menu click
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+            navbar.classList.toggle('navbar-active');
+            
+            // Toggle a class to shift the main content down when the navbar is expanded
+            if (navbar.classList.contains('navbar-active')) {
+                mainContent.style.marginTop = '150px'; // Adjust based on expanded navbar height
+            } else {
+                mainContent.style.marginTop = '0'; // Reset when the menu is collapsed
+            }
+        });
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('button');
+    const imageModal = document.getElementById('image-modal');
+    const passwordModal = document.getElementById('password-modal');
+
+    buttons.forEach(button => {
+        button.addEventListener('mousedown', function() {
+            this.classList.add('clicked');
+        });
+    });
+
+    const removeClickedClass = () => {
+        buttons.forEach(button => {
+            button.classList.remove('clicked');
+        });
+    };
+
+    if (imageModal || passwordModal) {
+        imageModal.addEventListener('hidden.bs.modal', removeClickedClass);
+        passwordModal.addEventListener('hidden.bs.modal', removeClickedClass);
+    }
+});
