@@ -127,24 +127,20 @@ if (reservationForm) {
 }
 
 // Profile picture change logic
-const button = document.getElementById('change-image');
-if (button) {
-    button.addEventListener('click', function() {
-        document.getElementById('modal').classList.add('show');
-        
-        document.getElementById('closeBtn').addEventListener('click', function() {
-            document.getElementById('modal').classList.remove('show');
-        });
-        
-        document.getElementById('saveBtn').addEventListener('click', function() {
-            const fileInput = document.getElementById('fileInput');
-            if (fileInput.files.length > 0) {
-                alert('Image selected: ' + fileInput.files[0].name);
-            } else {
-                alert('No file chosen');
-            }
-            document.getElementById('modal').classList.remove('show');
-        });
-        
+const changeImageButton = document.getElementById('change-image');
+const modal = new bootstrap.Modal(document.getElementById('image-modal'));
+
+if (changeImageButton) {
+    changeImageButton.addEventListener('click', function() {
+        modal.show();
+    });
+}
+
+const changePasswordButton = document.getElementById('change-password');
+const passwordModal = new bootstrap.Modal(document.getElementById('password-modal'));
+
+if (changePasswordButton) {
+    changePasswordButton.addEventListener('click', function() {
+        passwordModal.show();
     });
 }
