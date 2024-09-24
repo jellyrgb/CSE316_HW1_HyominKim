@@ -1,18 +1,22 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f6eeff;
+    background-color: #f1eeff;
 }
 
+
+/* Navbar */
 .navbar {
-    background-color: #f6eeff;
+    background-color: #f1eeff;
     overflow: visible;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .navbar-link {
     margin-right: 30px;
+}
+
+.navbar-profile {
+    height: 32px;
 }
 
 .navbar a {
@@ -25,12 +29,12 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #e6d0ff;
+    background-color: #e3ddff;
     color: black;
 }
 
 .navbar button:hover {
-    background-color: #e6d0ff;
+    background-color: #e3ddff;
     color: black;
 }
 
@@ -57,7 +61,7 @@ body {
 }
 
 .dropdown .dropbutton {
-    background-color: #f6eeff;
+    background-color: #f1eeff;
     padding: 14px 16px;
     border: none;
 }
@@ -67,7 +71,7 @@ body {
     position: absolute;
     background-color: #ffffff;
     min-width: 160px;
-    z-index: 100;
+    z-index: 2;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -76,7 +80,6 @@ body {
     padding: 12px 16px;
     display: block;
     text-align: left;
-    flex-direction: column;
 }
 
 .dropdown:hover .dropdown-content {
@@ -84,10 +87,8 @@ body {
     flex-direction: column;
 }
 
-.navbar-profile {
-    height: 32px;
-}
 
+/* Page content */
 .page-title {
     padding-left: 100px;
 }
@@ -96,10 +97,10 @@ body {
     padding-left: 120px;
 }
 
+
+/* Facility list page */
 .facility-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
 }
 
 .facility-container {
@@ -128,13 +129,12 @@ body {
 }
 
 .facility-info p, h2{
-    margin: 3px 0;
+    margin: 2px 0;
 }
 
 .facility-info div {
     display: flex;
     align-items: center;
-    margin: 2px 0;
 }
 
 .facility-info svg {
@@ -146,19 +146,23 @@ body {
     margin-top: 35px;
 }
 
+
+/* Facility reservation page */
 .reservation-form-content {
     padding-left: 100px;
 }
 
 .reservation-margin {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 #submit-button {
-    width: 80px;
-    height: 35px;
+    width: 85px;
+    height: 40px;
 }
 
+
+/* User information page */
 #profile-pic {
     width: 200px;
     height: 200px;
@@ -187,4 +191,222 @@ body {
     margin-bottom: 20px;
 }
 
+button {
+    background-color: transparent;
+    border-radius: 4px;
+}
 
+.profile-button {
+    height: 35px;
+}
+
+.profile-button.clicked {
+    background-color: #585858;
+    color: white;
+}
+
+
+/* Media Query */
+@media (max-width: 600px) {
+    .navbar-left {
+        padding-left: 20px;
+    }
+
+    .navbar-right {
+        padding-right: 20px;
+    }
+
+    .navbar-link {
+        margin-right: 10px;
+    }
+
+    .navbar a {
+        padding: 10px 12px;
+    }
+
+    .navbar-profile {
+        height: 28px;
+    }
+
+    .page-title {
+        padding-left: 20px;
+    }
+
+    .main-content {
+        padding-left: 40px;
+    }
+
+    .facility-container {
+        padding-left: 20px;
+    }
+
+    .facility-item img {
+        width: 200px;
+        margin-right: 20px;
+    }
+
+    .facility-info p, h2 {
+        margin: 1px 0;
+    }
+
+    .facility-info div {
+        display: flex;
+        align-items: center;
+    }
+
+    .facility-info svg {
+        margin-right: 2px;
+    }
+
+    #facility {
+        margin-top: 20px;
+    }
+
+    .reservation-form-content {
+        padding-left: 20px;
+    }
+
+    .reservation-margin {
+        margin-bottom: 10px;
+    }
+
+    #submit-button {
+        width: 70px;
+        height: 35px;
+    }
+
+    #profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .profile-button {
+        height: 30px;
+    }
+
+    .profile-padding {
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: transparent;
+        border-radius: 4px;
+    }
+
+    .profile-button {
+        height: 30px;
+    }
+
+    .profile-button.clicked {
+        background-color: #585858;
+        color: white;
+    }
+}
+
+@media (max-width: 800px) {
+    .navbar-left {
+        padding-left: 50px;
+    }
+
+    .navbar-right {
+        padding-right: 50px;
+    }
+
+    .navbar-link {
+        margin-right: 20px;
+    }
+
+    .navbar a {
+        padding: 12px 14px;
+    }
+
+    .navbar-profile {
+        height: 30px;
+    }
+
+    .page-title {
+        padding-left: 50px;
+    }
+
+    .main-content {
+        padding-left: 70px;
+    }
+
+    .facility-container {
+        padding-left: 50px;
+    }
+
+    .facility-item img {
+        width: 250px;
+        margin-right: 25px;
+    }
+
+    .facility-info p, h2 {
+        margin: 2px 0;
+    }
+
+    .facility-info div {
+        display: flex;
+        align-items: center;
+    }
+
+    .facility-info svg {
+        margin-right: 4px;
+    }
+
+    #facility {
+        margin-top: 30px;
+    }
+
+    .reservation-form-content {
+        padding-left: 50px;
+    }
+
+    .reservation-margin {
+        margin-bottom: 15px;
+    }
+
+    #submit-button {
+        width: 80px;
+        height: 40px;
+    }
+
+    #profile-pic {
+        width: 175px;
+        height: 175px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .profile-button {
+        height: 30px;
+    }
+
+    .profile-padding {
+        margin-bottom: 15px;
+    }
+
+    button {
+        background-color: transparent;
+        border-radius: 4px;
+    }
+
+    .profile-button {
+        height: 30px;
+    }
+
+    .profile-button.clicked {
+        background-color: #585858;
+        color: white;
+    }
+}
