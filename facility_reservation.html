@@ -10,6 +10,7 @@
 <body>
     <header>
         <nav class="navbar">
+            <!-- Home button in navbar -->
             <div class="navbar-left">
                 <a href="index.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
@@ -18,6 +19,7 @@
                 </a>
             </div>
 
+            <!-- Navbar links -->
             <div class="navbar-center">
                 <a href="facility_list.html" class="navbar-link">Facility List</a>
                 <a href="facility_reservation.html" class="navbar-link">Facility Reservation</a>
@@ -31,18 +33,21 @@
                 </div>
             </div>
 
+            <!-- Hamburger menu -->
             <button class="hamburger-menu" id="hamburger-menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
                   </svg>
             </button>
 
+            <!-- Profile picture in navbar -->
             <img id="navbar-profile" class="navbar-right navbar-profile" src="images/user.png" alt="User Profile Picture">
         </nav>
     </header>
     
     <main>
         <form id="reservation-form">
+            <!-- Facility selector -->
             <div class="reservation-form-content">
                 <select id="facility" name="facility">
                     <option value="gym">Gym</option>
@@ -54,35 +59,43 @@
                 </select>
             </div>
             
+            <!-- Selected facility information is displayed -->
             <div id="facility-list-reservation" class="facility-container">
                 <!-- Dynamically inserted by JS -->
             </div>
 
+            <!-- Form required for reservation -->
             <div class="reservation-form-content">
+                <!-- Date -->
                 <label class="reservation-margin" for="date"><strong>Date to be Used: </strong></label>
                 <input class="reservation-margin" type="date" id="date" name="date" required>
                 <br>
 
+                <!-- Number of people -->
                 <label class="reservation-margin" for="people"><strong>Number of People: </strong></label>
                 <input class="reservation-margin" type="number" id="people" name="people" required>
                 <br>
 
+                <!-- Affiliation -->
                 <p class="affiliation"><strong>Are you affiliated with SUNY Korea?</strong></p>
                 <input class="reservation-radio" type="radio" id="yes" name="affiliation" value="yes" checked> Yes
                 <br>
                 <input class="reservation-radio reservation-margin" type="radio" id="no" name="affiliation" value="no"> No
                 <br>
 
+                <!-- Purpose -->
                 <label for="purpose"><strong>Purpose of Use: </strong></label>
                 <br>
                 <textarea class="reservation-margin" id="purpose" name="purpose" rows="3" required></textarea>
                 <br>
 
+                <!-- Submit button -->
                 <button id="submit-button" type="submit">Submit</button>
             </div>
         </form>        
     </main>
 
+    <!-- Script link for bootstrap and script.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>

@@ -1,4 +1,4 @@
-// Information about the facilities
+// Information for the facilities
 const facilities = [
     { id: "gym", name: "Gym", description: "sports hall", capacity: 4, location: "C1033", availability: "Available to all", image: "images/gym.jpg" },
     { id: "auditorium", name: "Auditorium", description: "the auditorium theater", capacity: 30, location: "A234", availability: "Available to all", image: "images/auditorium.jpg" },
@@ -22,16 +22,21 @@ displayFacilityInfo("gym", initialFacility);
 
 // Event listener for facility selection
 if (initialFacility) {
+    // Everytime the user selects facility with dropdown, display the facility information
     document.getElementById('facility').addEventListener('change', function() {
         const facilityDisplay = document.getElementById('facility-list-reservation');
         if (facilityDisplay) {
+            // Clear the existing facility information
             facilityDisplay.innerHTML = '';
+
+            // Display newly selected facility information
             displayFacilityInfo(this.value, facilityDisplay);
         }
     });
 }
 
 // Function to display facility information
+// @param target: the HTML element to display the facility information
 function displayFacilityInfo(facilityId, target) {
     const facility = facilities.find(f => f.id === facilityId);
 
@@ -43,6 +48,8 @@ function displayFacilityInfo(facilityId, target) {
     if (facility) {
         const facilityItem = document.createElement('div');
         facilityItem.classList.add('facility-item');
+
+        // I used bootstrap svg icons to display the related information
         facilityItem.innerHTML = `
             <img src="${facility.image}" alt="${facility.name}">
             <div class="facility-info">
@@ -75,6 +82,7 @@ function displayFacilityInfo(facilityId, target) {
         `;
         target.appendChild(facilityItem);
     } else {
+        // If facility is invalid, display a message
         target.innerHTML = '<p>No information available.</p>';
     }
 }
@@ -82,20 +90,24 @@ function displayFacilityInfo(facilityId, target) {
 // Reservation form logic
 const reservationForm = document.getElementById('reservation-form');
 if (reservationForm) {
+    // Everytime the user submits the form, save the data
     reservationForm.addEventListener('submit', function(event) {
-        // 기본 제출 동작 방지
+        // Prevent from the user to submit the form with default behavior
         event.preventDefault();
 
+        // Get the form data from the user input
         const facility = document.getElementById('facility').value;
         const date = new Date(document.getElementById('date').value);
         const people = parseInt(document.getElementById('people').value, 10);
         const affiliation = document.querySelector('input[name="affiliation"]:checked').value;
         const purpose = document.getElementById('purpose').value;
 
+        // Data needed to validate the reservation
         const today = new Date();
         const facilityCapacity = facilities.find(f => f.id === facility).capacity;
         const isSUNYOnly = facilities.find(f => f.id === facility).availability === 'Only for SUNY Korea';
 
+        // Check if the reservation is valid
         if (people > facilityCapacity) {
             alert("Cannot reserve. (Capacity)");
             return;
@@ -111,15 +123,16 @@ if (reservationForm) {
             return;
         }
 
-        // 데이터 저장
+        // Reservation data to be saved
         const reservationData = {
             facility,
-            date: date.toISOString().split('T')[0],
+            date: date.toISOString().split('T')[0], // split() is to save the date in YYYY-MM-DD format
             people,
             affiliation,
             purpose
         };
 
+        // Save the reservation data to the local storage
         let reservations = JSON.parse(localStorage.getItem('reservations')) || [];
         reservations.push(reservationData);
         localStorage.setItem('reservations', JSON.stringify(reservations));
@@ -128,21 +141,27 @@ if (reservationForm) {
     });
 }
 
+// Modal logic for the profile page
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if the user is on the profile page
     if (window.location.pathname.endsWith('profile.html')) {
+        // Change image modal logic
         const changeImageButton = document.getElementById('change-image');
-        const modal = new bootstrap.Modal(document.getElementById('image-modal'));
+        const imageModal = new bootstrap.Modal(document.getElementById('image-modal'));
 
         if (changeImageButton) {
+            // Show modal when the user clicks the change image button
             changeImageButton.addEventListener('click', function() {
-                modal.show();
+                imageModal.show();
             });
         }
 
+        // Change password modal logic
         const changePasswordButton = document.getElementById('change-password');
         const passwordModal = new bootstrap.Modal(document.getElementById('password-modal'));
 
         if (changePasswordButton) {
+            // Show modal when the user clicks change password button
             changePasswordButton.addEventListener('click', function() {
                 passwordModal.show();
             });
@@ -150,22 +169,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
+// Reservation list logic for reservations page
 const reservationList = document.getElementById('reservation-list');
+// Get reservations from the local storage
 const reservations = JSON.parse(localStorage.getItem('reservations')) || [];
 
 if (reservations.length === 0) {
-    // Display No Reservation Found if there is no reservations yet
+    // Display 'No Reservation Found' if there is no reservations yet
     reservationList.innerHTML = '<h1 class="page-title">No Reservation Found</h1>';
 } else {
+    // Repeat through all the reservations in the local storage
     reservations.forEach(reservation => {
         const reservedItem = document.createElement('div');
         reservedItem.classList.add('reserved-item');
+
+        // Display reservation info if there is any reservation
         reservedItem.innerHTML = displayReservationInfo(reservation, reservation.facility, reservationList);
     });
 }
 
-// Function to display reserved facility information
+// Function to display reservation
+// Similar to displayFacilityInfo, but with this function needs reservation JSON data
 function displayReservationInfo(reservation, facilityId, target) {
     const facility = facilities.find(f => f.id === facilityId);
 
@@ -177,6 +201,8 @@ function displayReservationInfo(reservation, facilityId, target) {
     if (facility) {
         const facilityItem = document.createElement('div');
         facilityItem.classList.add('facility-item');
+        
+        // I used svg to display the related information
         facilityItem.innerHTML = `
             <img src="${facility.image}" alt="${facility.name}">
             <div class="facility-info">
@@ -209,11 +235,12 @@ function displayReservationInfo(reservation, facilityId, target) {
         `;
         target.appendChild(facilityItem);
     } else {
+        // If facility is invalid, display a message
         target.innerHTML = '<p>No information available.</p>';
     }
 }
 
-
+// Change navbar to hamburger menu logic
 document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const navbar = document.querySelector('.navbar');
@@ -224,34 +251,40 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerMenu.addEventListener('click', function() {
             navbar.classList.toggle('navbar-active');
             
-            // Toggle a class to shift the main content down when the navbar is expanded
+            // Shift the rest of the content down
             if (navbar.classList.contains('navbar-active')) {
-                mainContent.style.marginTop = '150px'; // Adjust based on expanded navbar height
+                mainContent.style.marginTop = '150px';
             } else {
-                mainContent.style.marginTop = '0'; // Reset when the menu is collapsed
+                // Reset the margin when hamburger menu is closed
+                mainContent.style.marginTop = '0';
             }
         });
     }
 });
 
-
+// Button click effect logic (turn to grey when modal is onscreen)
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('button');
+
+    // Make it work for all of the modals in the page
     const imageModal = document.getElementById('image-modal');
     const passwordModal = document.getElementById('password-modal');
 
+    // If the user clicks the button, change the state to clicked
     buttons.forEach(button => {
         button.addEventListener('mousedown', function() {
             this.classList.add('clicked');
         });
     });
 
+    // When the modal is hidden, remove the clicked state
     const removeClickedClass = () => {
         buttons.forEach(button => {
             button.classList.remove('clicked');
         });
     };
 
+    // Add event remove listener to the modals
     if (imageModal || passwordModal) {
         imageModal.addEventListener('hidden.bs.modal', removeClickedClass);
         passwordModal.addEventListener('hidden.bs.modal', removeClickedClass);
